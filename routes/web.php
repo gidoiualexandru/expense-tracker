@@ -6,12 +6,12 @@ use App\Http\Controllers\ExpenseController;
 
 Route::get('/', function () {
     return auth()->check()
-        ? redirect()->route('budgets.index') // Authenticated users go to budgets
-        : redirect()->route('login');       // Guests go to login
+        ? redirect()->route('budgets.index')
+        : redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('budgets.index');
 })->middleware(['auth'])->name('dashboard');
 
 

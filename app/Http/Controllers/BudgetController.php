@@ -13,8 +13,14 @@ class BudgetController extends Controller
 
     public function index()
     {
-        $budgets = Auth::user()->budgets;
-        return view('budgets.index', compact('budgets'));
+        $budgets = Auth::user()->budgets()->with('expenses')->get();
+        $totalExpenses = $budgets->sum(fn($budget) => $budget->expenses->sum('amount'));
+        $remainingBudget = $budgets->sum('total_amount') - $totalExpenses;
+        $highestBudget = $budgets->max('total_amount');
+        $chartLabels = $budgets->pluck('name')->toArray(); // Budget names
+        $chartData = $budgets->map(fn($budget) => $budget->expenses->sum('amount'))->toArray(); // Total expenses per budget
+
+        return view('budgets.index', compact('budgets', 'totalExpenses', 'remainingBudget', 'highestBudget', 'chartLabels', 'chartData'));
     }
 
     public function create()
