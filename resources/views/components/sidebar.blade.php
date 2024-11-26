@@ -11,7 +11,7 @@
             <span class="px-6 text-gray-400 text-sm uppercase">Budget & Investment</span>
             <ul class="space-y-2 mt-2">
                 <li>
-                    <a href="#" class="flex items-center px-6 py-3 space-x-3 text-gray-600 hover:bg-[#676df7] hover:text-white transition duration-150 ease-in-out rounded-lg">
+                    <a href="/dashboard" class="flex items-center px-6 py-3 space-x-3 text-gray-600 hover:bg-[#676df7] hover:text-white transition duration-150 ease-in-out rounded-lg">
                         <x-heroicon-o-chart-bar class="h-6 w-6" />
                         <span>Dashboard Overview</span>
                     </a>
@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center px-6 py-3 space-x-3 text-gray-600 hover:bg-[#676df7] hover:text-white transition duration-150 ease-in-out rounded-lg">
+                    <a href="/income" class="flex items-center px-6 py-3 space-x-3 text-gray-600 hover:bg-[#676df7] hover:text-white transition duration-150 ease-in-out rounded-lg">
                         <x-heroicon-o-currency-dollar class="h-6 w-6" />
                         <span>Income</span>
                     </a>
