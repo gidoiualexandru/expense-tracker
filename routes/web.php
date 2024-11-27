@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\ExpenseCategoryController;
 
 Route::get('/', function () {
     return auth()->check()
@@ -34,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/income/{income}/edit', [IncomeController::class, 'edit'])->name('income.edit');
     Route::put('/income/{income}', [IncomeController::class, 'update'])->name('income.update');
     Route::delete('/income/{income}', [IncomeController::class, 'destroy'])->name('income.destroy');
+    Route::resource('expense-categories', ExpenseCategoryController::class);
 });
 
 require __DIR__ . '/auth.php';

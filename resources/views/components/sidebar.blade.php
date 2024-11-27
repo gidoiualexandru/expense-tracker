@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center px-6 py-3 space-x-3 text-gray-600 hover:bg-[#676df7] hover:text-white transition duration-150 ease-in-out rounded-lg">
+                    <a href="/expense-categories" class="flex items-center px-6 py-3 space-x-3 text-gray-600 hover:bg-[#676df7] hover:text-white transition duration-150 ease-in-out rounded-lg">
                         <x-heroicon-o-document-text class="h-6 w-6" />
                         <span>Expenses Category</span>
                     </a>
