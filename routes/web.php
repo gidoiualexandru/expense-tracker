@@ -5,6 +5,7 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ExpenseCategoryController;
+use App\Http\Controllers\SavingsGoalController;
 
 Route::get('/', function () {
     return auth()->check()
@@ -16,10 +17,8 @@ Route::get('/dashboard', function () {
     return view('budgets.index');
 })->middleware(['auth'])->name('dashboard');
 
-
 Route::middleware(['auth'])->group(function () {
     Route::resource('budgets', BudgetController::class);
-
     Route::get('expenses/create/{budget_id}', [ExpenseController::class, 'create'])->name('expenses.create');
     Route::get('expenses/{budget_id}', [ExpenseController::class, 'index'])->name('expenses.index');
     Route::post('expenses', [ExpenseController::class, 'store'])->name('expenses.store');
@@ -29,13 +28,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/income/create/{type}', [IncomeController::class, 'create'])->name('income.create');
     Route::post('/income', [IncomeController::class, 'store'])->name('income.store');
     Route::get('/income', [IncomeController::class, 'index'])->name('income.index');
-    Route::get('/income', [IncomeController::class, 'index'])->name('income.index');
-    Route::get('/income/create/{type}', [IncomeController::class, 'create'])->name('income.create');
-    Route::post('/income', [IncomeController::class, 'store'])->name('income.store');
     Route::get('/income/{income}/edit', [IncomeController::class, 'edit'])->name('income.edit');
     Route::put('/income/{income}', [IncomeController::class, 'update'])->name('income.update');
     Route::delete('/income/{income}', [IncomeController::class, 'destroy'])->name('income.destroy');
     Route::resource('expense-categories', ExpenseCategoryController::class);
+    Route::resource('savings', SavingsGoalController::class)
+        ->parameters(['savings' => 'saving'])
+        ->except(['show']);
 });
 
 require __DIR__ . '/auth.php';

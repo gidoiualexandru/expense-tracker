@@ -23,12 +23,14 @@
                         <x-heroicon-o-bell class="h-6 w-6 text-gray-500" />
                     </button>
                     @auth
-                        <div class="relative">
-                            <button id="userDropdown" class="flex items-center space-x-2 focus:outline-none">
-                                <img src="{{ asset('images/user-avatar.jpg') }}" alt="User Avatar" class="h-10 w-10 rounded-full">
-                                <x-heroicon-o-chevron-down class="h-5 w-5 text-gray-500" />
+                        <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false">
+                            <button @click="dropdownOpen = !dropdownOpen" class="flex items-center space-x-2 focus:outline-none">
+                                <img src="{{ asset('images/profile.png') }}" alt="User Avatar" class="h-10 w-10 rounded-full">
+                                <svg :class="{'rotate-180': dropdownOpen, 'rotate-0': !dropdownOpen}" class="h-5 w-5 text-gray-500 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
                             </button>
-                            <div id="dropdownMenu" class="absolute right-0 mt-2 bg-white shadow-lg rounded-lg w-48 hidden">
+                            <div x-show="dropdownOpen" x-transition class="absolute right-0 mt-2 bg-white shadow-lg rounded-lg w-48">
                                 <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View Profile</a>
                                 <a href="{{ route('logout') }}" class="block px-4 py-2 text-red-500 hover:bg-red-100"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -63,13 +65,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
-        const userDropdown = document.getElementById('userDropdown');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        if (userDropdown) {
-            userDropdown.addEventListener('click', () => {
-                dropdownMenu.classList.toggle('hidden');
-            });
-        }
     </script>
     <script src="//unpkg.com/alpinejs" defer></script>
 </body>
